@@ -3,285 +3,1033 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#09090b">
+  <meta name="description" content="KYAMBS KICKS — premium sneakers and fresh streetwear styles in Uganda.">
 
   <title>KYAMBS KICKS | Step Into Your Style</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
   <style>
+    :root {
+      --black: #09090b;
+      --black-soft: #141416;
+      --white: #ffffff;
+      --cream: #f7f6f2;
+      --muted: #77777d;
+      --red: #e5092f;
+      --red-dark: #a90021;
+      --line: rgba(0, 0, 0, 0.1);
+      --shadow: 0 18px 50px rgba(0, 0, 0, 0.12);
+      --radius: 22px;
+      --max-width: 1240px;
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+    }
+
+    html {
       scroll-behavior: smooth;
     }
 
     body {
-      font-family: Arial, sans-serif;
-      background: #f7f7f7;
-      color: #111;
-      line-height: 1.6;
+      background: var(--cream);
+      color: var(--black);
+      font-family: "DM Sans", Arial, sans-serif;
+      overflow-x: hidden;
     }
 
-    /* NAVIGATION */
-
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: #111;
-      color: white;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 18px 7%;
+    img {
+      display: block;
+      width: 100%;
     }
 
-    .logo {
-      font-size: 22px;
-      font-weight: bold;
-      letter-spacing: 2px;
-    }
-
-    nav a {
-      color: white;
+    a {
+      color: inherit;
       text-decoration: none;
-      margin-left: 20px;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      border: 0;
+      cursor: pointer;
+    }
+
+    .container {
+      width: min(92%, var(--max-width));
+      margin-inline: auto;
+    }
+
+    .announcement {
+      background: var(--red);
+      color: white;
+      text-align: center;
+      padding: 10px 16px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .navbar {
+      position: relative;
+      z-index: 20;
+      background: var(--black);
+      color: white;
+    }
+
+    .nav-inner {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(20px, 3vw, 29px);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      white-space: nowrap;
+    }
+
+    .brand span {
+      color: var(--red);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      color: #d5d5d8;
       font-size: 14px;
+      font-weight: 600;
     }
 
-    nav a:hover {
-      opacity: 0.7;
+    .nav-links a {
+      position: relative;
+      padding-block: 8px;
+      transition: color 0.25s ease;
     }
 
-    /* HERO */
+    .nav-links a::after {
+      position: absolute;
+      content: "";
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: var(--red);
+      transition: width 0.25s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: white;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a:focus-visible::after {
+      width: 100%;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .icon-button,
+    .menu-button {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #202024;
+      color: white;
+      font-size: 18px;
+      transition: background 0.25s ease, transform 0.25s ease;
+    }
+
+    .icon-button:hover,
+    .menu-button:hover {
+      background: var(--red);
+      transform: translateY(-2px);
+    }
+
+    .cart-button {
+      position: relative;
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -4px;
+      right: -3px;
+      min-width: 19px;
+      height: 19px;
+      display: grid;
+      place-items: center;
+      padding: 2px;
+      border-radius: 50%;
+      background: var(--red);
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .menu-button {
+      display: none;
+    }
 
     .hero {
-      min-height: 85vh;
-      display: flex;
+      position: relative;
+      isolation: isolate;
+      min-height: 680px;
+      display: grid;
       align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 60px 20px;
-      background:
-        linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
-        url("https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1600&q=80")
-        center/cover;
+      overflow: hidden;
+      background: var(--black);
       color: white;
+    }
+
+    .hero::before {
+      position: absolute;
+      z-index: -2;
+      content: "";
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(8, 8, 10, 0.93) 0%, rgba(8, 8, 10, 0.62) 44%, rgba(8, 8, 10, 0.12) 100%),
+        url("images/hero-shoe.jpg") center/cover no-repeat;
+      transform: scale(1.04);
+      animation: heroZoom 12s ease-out forwards;
+    }
+
+    .hero::after {
+      position: absolute;
+      z-index: -1;
+      content: "";
+      width: 450px;
+      height: 450px;
+      right: 5%;
+      bottom: -180px;
+      border-radius: 50%;
+      background: var(--red);
+      filter: blur(110px);
+      opacity: 0.42;
     }
 
     .hero-content {
-      max-width: 800px;
+      max-width: 650px;
+      padding-block: 100px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 22px;
+      color: #ff7389;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      animation: fadeUp 0.7s 0.1s both;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 2px;
+      background: var(--red);
     }
 
     .hero h1 {
-      font-size: clamp(45px, 9vw, 90px);
-      line-height: 1;
-      margin-bottom: 20px;
-      letter-spacing: -3px;
+      max-width: 700px;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(46px, 8vw, 94px);
+      line-height: 0.94;
+      letter-spacing: -0.06em;
+      animation: fadeUp 0.8s 0.2s both;
     }
 
-    .hero p {
-      font-size: 18px;
-      margin-bottom: 30px;
-      opacity: 0.9;
+    .hero h1 span {
+      color: var(--red);
     }
 
-    .btn {
-      display: inline-block;
-      background: white;
-      color: #111;
-      padding: 14px 25px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: 0.3s;
+    .hero-copy {
+      max-width: 480px;
+      margin-top: 26px;
+      color: #d5d5d8;
+      font-size: 17px;
+      line-height: 1.7;
+      animation: fadeUp 0.8s 0.35s both;
     }
 
-    .btn:hover {
-      transform: translateY(-3px);
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+      margin-top: 34px;
+      animation: fadeUp 0.8s 0.5s both;
     }
 
-    .btn-dark {
-      background: #111;
+    .primary-button,
+    .outline-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 0 25px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+      transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
+    }
+
+    .primary-button {
+      background: var(--red);
+      color: white;
+      box-shadow: 0 12px 30px rgba(229, 9, 47, 0.28);
+    }
+
+    .primary-button:hover,
+    .outline-button:hover {
+      transform: translateY(-4px);
+    }
+
+    .primary-button:hover {
+      background: #ff1745;
+    }
+
+    .outline-button {
+      border: 1px solid rgba(255, 255, 255, 0.4);
       color: white;
     }
 
-    /* SECTIONS */
-
-    section {
-      padding: 80px 7%;
+    .outline-button:hover {
+      background: white;
+      color: var(--black);
     }
 
-    .section-title {
-      text-align: center;
-      margin-bottom: 45px;
+    .hero-stats {
+      display: flex;
+      gap: 34px;
+      margin-top: 58px;
+      animation: fadeUp 0.8s 0.65s both;
     }
 
-    .section-title h2 {
-      font-size: 38px;
+    .hero-stat strong {
+      display: block;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 25px;
+    }
+
+    .hero-stat span {
+      display: block;
+      margin-top: 4px;
+      color: #aaaab0;
+      font-size: 12px;
+    }
+
+    .ticker {
+      overflow: hidden;
+      background: var(--red);
+      color: white;
+    }
+
+    .ticker-track {
+      display: flex;
+      width: max-content;
+      gap: 35px;
+      padding: 14px 0;
+      animation: ticker 24s linear infinite;
+    }
+
+    .ticker-item {
+      display: flex;
+      align-items: center;
+      gap: 35px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .ticker-item::after {
+      content: "✦";
+      font-size: 16px;
+    }
+
+    .section {
+      padding: 110px 0;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 25px;
+      margin-bottom: 38px;
+    }
+
+    .section-kicker {
       margin-bottom: 10px;
+      color: var(--red);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
     }
 
-    .section-title p {
-      color: #777;
+    .section-heading h2 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(34px, 5vw, 58px);
+      line-height: 1;
+      letter-spacing: -0.05em;
     }
 
-    /* PRODUCTS */
+    .section-heading p {
+      max-width: 310px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-bottom: 28px;
+    }
+
+    .filter-button {
+      padding: 10px 17px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      transition: 0.25s ease;
+    }
+
+    .filter-button:hover,
+    .filter-button.active {
+      border-color: var(--black);
+      background: var(--black);
+      color: white;
+    }
 
     .products {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 25px;
-      max-width: 1100px;
-      margin: auto;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
     }
 
-    .product {
-      background: white;
-      border-radius: 18px;
+    .product-card {
+      position: relative;
       overflow: hidden;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-      transition: 0.3s;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: var(--radius);
+      background: white;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
     }
 
-    .product:hover {
-      transform: translateY(-7px);
+    .product-card:hover {
+      transform: translateY(-9px);
+      box-shadow: var(--shadow);
     }
 
-    .product img {
-      width: 100%;
-      height: 250px;
+    .product-image {
+      position: relative;
+      height: 330px;
+      overflow: hidden;
+      background: #ededeb;
+    }
+
+    .product-image img {
+      height: 100%;
       object-fit: cover;
-      display: block;
+      transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+
+    .product-card:hover .product-image img {
+      transform: scale(1.09);
+    }
+
+    .product-label {
+      position: absolute;
+      z-index: 2;
+      top: 15px;
+      left: 15px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: var(--red);
+      color: white;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .quick-view {
+      position: absolute;
+      z-index: 2;
+      right: 15px;
+      bottom: 15px;
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: white;
+      color: var(--black);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: 0.3s ease;
+    }
+
+    .product-card:hover .quick-view,
+    .quick-view:focus-visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .product-info {
       padding: 20px;
     }
 
-    .product-info h3 {
+    .product-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
       margin-bottom: 8px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .product-info h3 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 22px;
+    }
+
+    .product-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 18px;
     }
 
     .price {
-      font-weight: bold;
-      font-size: 18px;
-      margin-bottom: 15px;
-    }
-
-    /* ABOUT */
-
-    .about {
-      background: white;
-    }
-
-    .about-container {
-      max-width: 850px;
-      margin: auto;
-      text-align: center;
-    }
-
-    .about-container p {
-      color: #666;
       font-size: 17px;
+      font-weight: 700;
     }
 
-    /* WHY US */
+    .add-button {
+      padding: 10px 15px;
+      border-radius: 999px;
+      background: var(--black);
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      transition: 0.25s ease;
+    }
 
-    .features {
+    .add-button:hover {
+      background: var(--red);
+      transform: translateY(-2px);
+    }
+
+    .product-card.hidden {
+      display: none;
+    }
+
+    .promo {
+      position: relative;
+      overflow: hidden;
+      padding: 75px;
+      border-radius: 30px;
+      background:
+        linear-gradient(105deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.28)),
+        url("images/red-force.jpg") center/cover no-repeat;
+      color: white;
+    }
+
+    .promo::after {
+      position: absolute;
+      content: "KICKS";
+      right: -20px;
+      bottom: -40px;
+      color: rgba(255, 255, 255, 0.08);
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 180px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .promo-content {
+      position: relative;
+      z-index: 1;
+      max-width: 500px;
+    }
+
+    .promo h2 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(35px, 5vw, 60px);
+      line-height: 1;
+      letter-spacing: -0.05em;
+    }
+
+    .promo p {
+      margin: 20px 0 28px;
+      color: #d7d7d7;
+      line-height: 1.6;
+    }
+
+    .about-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-      max-width: 1000px;
-      margin: auto;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 70px;
+      align-items: center;
     }
 
-    .feature {
-      background: white;
-      padding: 30px;
-      text-align: center;
-      border-radius: 15px;
+    .about-image {
+      height: 520px;
+      overflow: hidden;
+      border-radius: 30px;
+      background: #ddd;
     }
 
-    .feature-icon {
-      font-size: 40px;
-      margin-bottom: 15px;
+    .about-image img {
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s ease;
     }
 
-    .feature p {
-      color: #777;
-      margin-top: 8px;
+    .about-image:hover img {
+      transform: scale(1.06);
     }
 
-    /* GALLERY */
+    .about-content h2 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(38px, 5vw, 65px);
+      line-height: 1;
+      letter-spacing: -0.06em;
+    }
 
-    .gallery {
+    .about-content p {
+      margin: 24px 0;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .benefits {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
-      max-width: 1100px;
-      margin: auto;
+      gap: 12px;
+      margin-top: 34px;
     }
 
-    .gallery img {
-      width: 100%;
-      height: 260px;
-      object-fit: cover;
-      border-radius: 15px;
+    .benefit {
+      padding: 17px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
     }
 
-    /* CONTACT */
+    .benefit-icon {
+      margin-bottom: 11px;
+      color: var(--red);
+      font-size: 22px;
+    }
 
-    .contact {
-      background: #111;
+    .benefit strong {
+      display: block;
+      font-size: 13px;
+    }
+
+    .benefit span {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.4;
+    }
+
+    .newsletter {
+      padding: 90px 20px;
+      background: var(--black);
       color: white;
       text-align: center;
     }
 
-    .contact p {
-      color: #ccc;
-      margin: 10px 0 25px;
+    .newsletter h2 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(34px, 5vw, 55px);
+      letter-spacing: -0.05em;
     }
 
-    /* FOOTER */
+    .newsletter p {
+      margin: 15px auto 28px;
+      color: #aaaab0;
+    }
+
+    .newsletter-form {
+      display: flex;
+      width: min(100%, 480px);
+      margin: auto;
+      padding: 5px;
+      border: 1px solid #3a3a3f;
+      border-radius: 999px;
+      background: #18181b;
+    }
+
+    .newsletter-form input {
+      width: 100%;
+      min-width: 0;
+      padding: 0 17px;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: white;
+    }
+
+    .newsletter-form input::placeholder {
+      color: #888890;
+    }
+
+    .newsletter-form button {
+      flex-shrink: 0;
+      padding: 13px 19px;
+      border-radius: 999px;
+      background: var(--red);
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+    }
 
     footer {
-      background: #080808;
-      color: #aaa;
-      text-align: center;
-      padding: 30px 20px;
-      font-size: 14px;
+      padding: 45px 0 25px;
+      background: var(--black);
+      color: white;
+      border-top: 1px solid #2a2a2d;
     }
 
-    /* MOBILE */
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 35px;
+      padding-bottom: 40px;
+    }
 
-    @media (max-width: 700px) {
+    .footer-brand p {
+      max-width: 260px;
+      margin-top: 15px;
+      color: #99999f;
+      font-size: 13px;
+      line-height: 1.7;
+    }
 
-      nav {
-        padding: 16px 5%;
+    .footer-column h3 {
+      margin-bottom: 15px;
+      font-size: 13px;
+    }
+
+    .footer-column a {
+      display: block;
+      margin-bottom: 10px;
+      color: #99999f;
+      font-size: 13px;
+      transition: color 0.2s ease;
+    }
+
+    .footer-column a:hover {
+      color: white;
+    }
+
+    .copyright {
+      padding-top: 22px;
+      border-top: 1px solid #2a2a2d;
+      color: #77777d;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .toast {
+      position: fixed;
+      z-index: 100;
+      right: 20px;
+      bottom: 20px;
+      max-width: 320px;
+      padding: 15px 18px;
+      border-radius: 13px;
+      background: var(--black);
+      color: white;
+      box-shadow: var(--shadow);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(25px);
+      transition: 0.3s ease;
+      font-size: 13px;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .modal {
+      position: fixed;
+      z-index: 80;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.7);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-box {
+      position: relative;
+      width: min(100%, 560px);
+      overflow: hidden;
+      border-radius: 24px;
+      background: white;
+      transform: translateY(20px) scale(0.97);
+      transition: transform 0.3s ease;
+    }
+
+    .modal.open .modal-box {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-image {
+      height: 300px;
+    }
+
+    .modal-image img {
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .modal-details {
+      padding: 25px;
+    }
+
+    .modal-details h2 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 30px;
+    }
+
+    .modal-details p {
+      margin: 10px 0 20px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .close-modal {
+      position: absolute;
+      z-index: 2;
+      top: 15px;
+      right: 15px;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: white;
+      font-size: 20px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(22px);
       }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-      nav .links {
+    @keyframes heroZoom {
+      from {
+        transform: scale(1.04);
+      }
+      to {
+        transform: scale(1.12);
+      }
+    }
+
+    @keyframes ticker {
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    @media (max-width: 850px) {
+      .nav-links {
+        position: absolute;
+        top: 78px;
+        left: 0;
+        right: 0;
         display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 12px 5%;
+        background: var(--black-soft);
       }
 
-      section {
-        padding: 60px 5%;
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 15px 0;
+        border-bottom: 1px solid #29292d;
+      }
+
+      .menu-button {
+        display: grid;
+      }
+
+      .products {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .about-image {
+        height: 400px;
+      }
+
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 560px) {
+      .nav-inner {
+        min-height: 70px;
+      }
+
+      .nav-links {
+        top: 70px;
       }
 
       .hero {
-        min-height: 80vh;
+        min-height: 650px;
       }
 
-      .hero h1 {
-        font-size: 52px;
+      .hero-content {
+        padding-block: 80px;
       }
 
-      .gallery {
+      .hero-stats {
+        gap: 20px;
+      }
+
+      .hero-stat strong {
+        font-size: 20px;
+      }
+
+      .section {
+        padding: 75px 0;
+      }
+
+      .section-heading {
+        display: block;
+      }
+
+      .section-heading p {
+        margin-top: 15px;
+      }
+
+      .products {
         grid-template-columns: 1fr;
       }
 
-      .gallery img {
-        height: 300px;
+      .product-image {
+        height: 350px;
+      }
+
+      .promo {
+        padding: 45px 25px;
+      }
+
+      .benefits {
+        grid-template-columns: 1fr;
+      }
+
+      .newsletter-form {
+        border: 0;
+        display: grid;
+        gap: 10px;
+        padding: 0;
+        background: transparent;
+      }
+
+      .newsletter-form input,
+      .newsletter-form button {
+        min-height: 48px;
+        border-radius: 999px;
+        background: #18181b;
+      }
+
+      .newsletter-form button {
+        background: var(--red);
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
       }
     }
   </style>
@@ -289,308 +1037,472 @@
 
 <body>
 
-  <!-- NAVIGATION -->
+  <div class="announcement">
+    Free delivery around Kampala • New styles just landed
+  </div>
 
-  <nav>
-    <div class="logo">KYAMBS KICKS</div>
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="#" class="brand">KYAMBS <span>KICKS</span></a>
 
-    <div class="links">
-      <a href="#home">Home</a>
-      <a href="#shop">Shop</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#products">Collection</a>
+        <a href="#about">About us</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="icon-button cart-button" type="button" aria-label="Shopping cart">
+          🛒
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+
+        <button class="menu-button" id="menuButton" type="button" aria-label="Open menu" aria-expanded="false">
+          ☰
+        </button>
+      </div>
     </div>
-  </nav>
+  </header>
 
+  <main>
 
-  <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="container hero-content">
+        <div class="eyebrow">Fresh steps. Every day.</div>
 
-  <section class="hero" id="home">
+        <h1>STEP INTO <span>YOUR STYLE.</span></h1>
 
-    <div class="hero-content">
+        <p class="hero-copy">
+          Discover premium sneakers, bold everyday essentials, and fresh streetwear energy made for your next move.
+        </p>
 
-      <h1>STEP INTO YOUR STYLE.</h1>
-
-      <p>
-        Fresh sneakers. Clean style. Everyday confidence.
-      </p>
-
-      <a href="#shop" class="btn">
-        SHOP COLLECTION
-      </a>
-
-    </div>
-
-  </section>
-
-
-  <!-- PRODUCTS -->
-
-  <section id="shop">
-
-    <div class="section-title">
-
-      <h2>Featured Kicks</h2>
-
-      <p>
-        Discover some of our latest styles.
-      </p>
-
-    </div>
-
-
-    <div class="products">
-
-      <div class="product">
-
-        <img
-          src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80"
-          alt="Red sneaker"
-        >
-
-        <div class="product-info">
-
-          <h3>Classic Runner</h3>
-
-          <div class="price">
-            UGX 150,000
-          </div>
-
-          <a
-            class="btn btn-dark"
-            href="https://wa.me/256700000000?text=Hello%20KYAMBS%20KICKS%2C%20I%20am%20interested%20in%20the%20Classic%20Runner."
-          >
-            Order
-          </a>
-
+        <div class="hero-buttons">
+          <a href="#products" class="primary-button">Shop collection →</a>
+          <a href="#about" class="outline-button">Our story</a>
         </div>
 
-      </div>
-
-
-      <div class="product">
-
-        <img
-          src="https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=800&q=80"
-          alt="White sneaker"
-        >
-
-        <div class="product-info">
-
-          <h3>Street Flex</h3>
-
-          <div class="price">
-            UGX 180,000
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <strong>100%</strong>
+            <span>Style focused</span>
           </div>
+          <div class="hero-stat">
+            <strong>UG</strong>
+            <span>Built for Uganda</span>
+          </div>
+          <div class="hero-stat">
+            <strong>24/7</strong>
+            <span>Order online</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-          <a
-            class="btn btn-dark"
-            href="https://wa.me/256700000000?text=Hello%20KYAMBS%20KICKS%2C%20I%20am%20interested%20in%20the%20Street%20Flex."
-          >
-            Order
-          </a>
+    <div class="ticker" aria-label="Store highlights">
+      <div class="ticker-track">
+        <div class="ticker-item">Premium sneakers</div>
+        <div class="ticker-item">Fresh arrivals</div>
+        <div class="ticker-item">Kampala delivery</div>
+        <div class="ticker-item">Shop your next pair</div>
+        <div class="ticker-item">Premium sneakers</div>
+        <div class="ticker-item">Fresh arrivals</div>
+        <div class="ticker-item">Kampala delivery</div>
+        <div class="ticker-item">Shop your next pair</div>
+      </div>
+    </div>
 
+    <section class="section" id="products">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div>
+            <div class="section-kicker">The collection</div>
+            <h2>Featured kicks</h2>
+          </div>
+          <p>
+            Carefully selected styles for everyday movement, weekend energy, and standout streetwear looks.
+          </p>
         </div>
 
-      </div>
-
-
-      <div class="product">
-
-        <img
-          src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&w=800&q=80"
-          alt="Black sneaker"
-        >
-
-        <div class="product-info">
-
-          <h3>Urban Pro</h3>
-
-          <div class="price">
-            UGX 200,000
-          </div>
-
-          <a
-            class="btn btn-dark"
-            href="https://wa.me/256700000000?text=Hello%20KYAMBS%20KICKS%2C%20I%20am%20interested%20in%20the%20Urban%20Pro."
-          >
-            Order
-          </a>
-
+        <div class="filter-bar reveal" aria-label="Product filters">
+          <button class="filter-button active" data-filter="all">All kicks</button>
+          <button class="filter-button" data-filter="running">Running</button>
+          <button class="filter-button" data-filter="streetwear">Streetwear</button>
+          <button class="filter-button" data-filter="everyday">Everyday</button>
         </div>
 
+        <div class="products">
+
+          <article class="product-card reveal" data-category="running">
+            <div class="product-image">
+              <span class="product-label">Best seller</span>
+              <img src="images/classic-runner.jpg" alt="Classic Runner red sneakers" loading="lazy">
+              <button class="quick-view" type="button" data-product="Classic Runner" data-price="UGX 150,000" data-image="images/classic-runner.jpg" aria-label="Quick view Classic Runner">⌕</button>
+            </div>
+            <div class="product-info">
+              <div class="product-meta">
+                <span>Running</span>
+                <span>★★★★★</span>
+              </div>
+              <h3>Classic Runner</h3>
+              <div class="product-bottom">
+                <span class="price">UGX 150,000</span>
+                <button class="add-button" type="button" data-name="Classic Runner">Add to bag</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card reveal" data-category="streetwear">
+            <div class="product-image">
+              <span class="product-label">New arrival</span>
+              <img src="images/street-flex.jpg" alt="Street Flex sneakers" loading="lazy">
+              <button class="quick-view" type="button" data-product="Street Flex" data-price="UGX 180,000" data-image="images/street-flex.jpg" aria-label="Quick view Street Flex">⌕</button>
+            </div>
+            <div class="product-info">
+              <div class="product-meta">
+                <span>Streetwear</span>
+                <span>★★★★★</span>
+              </div>
+              <h3>Street Flex</h3>
+              <div class="product-bottom">
+                <span class="price">UGX 180,000</span>
+                <button class="add-button" type="button" data-name="Street Flex">Add to bag</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card reveal" data-category="everyday">
+            <div class="product-image">
+              <span class="product-label">Popular</span>
+              <img src="images/urban-pro.jpg" alt="Urban Pro sneakers" loading="lazy">
+              <button class="quick-view" type="button" data-product="Urban Pro" data-price="UGX 200,000" data-image="images/urban-pro.jpg" aria-label="Quick view Urban Pro">⌕</button>
+            </div>
+            <div class="product-info">
+              <div class="product-meta">
+                <span>Everyday</span>
+                <span>★★★★★</span>
+              </div>
+              <h3>Urban Pro</h3>
+              <div class="product-bottom">
+                <span class="price">UGX 200,000</span>
+                <button class="add-button" type="button" data-name="Urban Pro">Add to bag</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card reveal" data-category="running">
+            <div class="product-image">
+              <span class="product-label">Lightweight</span>
+              <img src="images/air-motion.jpg" alt="Air Motion running sneakers" loading="lazy">
+              <button class="quick-view" type="button" data-product="Air Motion" data-price="UGX 175,000" data-image="images/air-motion.jpg" aria-label="Quick view Air Motion">⌕</button>
+            </div>
+            <div class="product-info">
+              <div class="product-meta">
+                <span>Running</span>
+                <span>★★★★★</span>
+              </div>
+              <h3>Air Motion</h3>
+              <div class="product-bottom">
+                <span class="price">UGX 175,000</span>
+                <button class="add-button" type="button" data-name="Air Motion">Add to bag</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card reveal" data-category="streetwear">
+            <div class="product-image">
+              <span class="product-label">Limited</span>
+              <img src="images/red-force.jpg" alt="Red Force streetwear sneakers" loading="lazy">
+              <button class="quick-view" type="button" data-product="Red Force" data-price="UGX 220,000" data-image="images/red-force.jpg" aria-label="Quick view Red Force">⌕</button>
+            </div>
+            <div class="product-info">
+              <div class="product-meta">
+                <span>Streetwear</span>
+                <span>★★★★★</span>
+              </div>
+              <h3>Red Force</h3>
+              <div class="product-bottom">
+                <span class="price">UGX 220,000</span>
+                <button class="add-button" type="button" data-name="Red Force">Add to bag</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card reveal" data-category="everyday">
+            <div class="product-image">
+              <span class="product-label">Comfort</span>
+              <img src="images/daily-cloud.jpg" alt="Daily Cloud everyday sneakers" loading="lazy">
+              <button class="quick-view" type="button" data-product="Daily Cloud" data-price="UGX 160,000" data-image="images/daily-cloud.jpg" aria-label="Quick view Daily Cloud">⌕</button>
+            </div>
+            <div class="product-info">
+              <div class="product-meta">
+                <span>Everyday</span>
+                <span>★★★★★</span>
+              </div>
+              <h3>Daily Cloud</h3>
+              <div class="product-bottom">
+                <span class="price">UGX 160,000</span>
+                <button class="add-button" type="button" data-name="Daily Cloud">Add to bag</button>
+              </div>
+            </div>
+          </article>
+
+        </div>
       </div>
+    </section>
 
-    </div>
-
-  </section>
-
-
-  <!-- ABOUT -->
-
-  <section class="about" id="about">
-
-    <div class="about-container">
-
-      <div class="section-title">
-
-        <h2>About KYAMBS KICKS</h2>
-
+    <section class="section">
+      <div class="container">
+        <div class="promo reveal">
+          <div class="promo-content">
+            <div class="section-kicker">Make your move</div>
+            <h2>Your next pair is waiting.</h2>
+            <p>
+              Find a look that matches your energy. Message us directly and we will help you choose the right pair.
+            </p>
+            <a class="primary-button" href="https://wa.me/256700000000?text=Hello%20KYAMBS%20KICKS%2C%20I%20need%20help%20choosing%20a%20pair." target="_blank">
+              Chat on WhatsApp
+            </a>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <p>
-        KYAMBS KICKS is a modern sneaker store created for people
-        who want fresh, stylish and quality footwear.
-        We bring together clean designs and everyday comfort
-        for sneaker lovers in Uganda.
-      </p>
+    <section class="section" id="about">
+      <div class="container about-grid">
+        <div class="about-image reveal">
+          <img src="images/hero-shoe.jpg" alt="Featured sneaker from KYAMBS KICKS" loading="lazy">
+        </div>
 
-    </div>
+        <div class="about-content reveal">
+          <div class="section-kicker">Why KYAMBS KICKS</div>
+          <h2>More than shoes. It is your signature.</h2>
+          <p>
+            KYAMBS KICKS is a modern Ugandan sneaker store focused on fresh designs, confident style, and footwear that fits your everyday life.
+          </p>
+          <a href="#contact" class="primary-button">Talk to us →</a>
 
-  </section>
-
-
-  <!-- WHY US -->
-
-  <section>
-
-    <div class="section-title">
-
-      <h2>Why Choose Us?</h2>
-
-    </div>
-
-
-    <div class="features">
-
-      <div class="feature">
-
-        <div class="feature-icon">👟</div>
-
-        <h3>Fresh Styles</h3>
-
-        <p>
-          Discover modern sneaker styles for everyday wear.
-        </p>
-
+          <div class="benefits">
+            <div class="benefit">
+              <div class="benefit-icon">✦</div>
+              <strong>Fresh styles</strong>
+              <span>Stand out with carefully selected designs.</span>
+            </div>
+            <div class="benefit">
+              <div class="benefit-icon">✓</div>
+              <strong>Easy ordering</strong>
+              <span>Choose your pair and order through WhatsApp.</span>
+            </div>
+            <div class="benefit">
+              <div class="benefit-icon">⌁</div>
+              <strong>Local service</strong>
+              <span>Built for sneaker lovers in Uganda.</span>
+            </div>
+          </div>
+        </div>
       </div>
+    </section>
 
+    <section class="newsletter" id="contact">
+      <div class="container">
+        <h2>Stay in the loop.</h2>
+        <p>Get new arrivals and special offers from KYAMBS KICKS.</p>
 
-      <div class="feature">
-
-        <div class="feature-icon">⭐</div>
-
-        <h3>Quality First</h3>
-
-        <p>
-          We focus on quality and great-looking footwear.
-        </p>
-
+        <form class="newsletter-form" id="newsletterForm">
+          <input type="email" placeholder="Your email address" aria-label="Your email address" required>
+          <button type="submit">Subscribe</button>
+        </form>
       </div>
+    </section>
 
-
-      <div class="feature">
-
-        <div class="feature-icon">📱</div>
-
-        <h3>Easy Ordering</h3>
-
-        <p>
-          Contact us easily and place your order online.
-        </p>
-
-      </div>
-
-
-      <div class="feature">
-
-        <div class="feature-icon">🇺🇬</div>
-
-        <h3>Made For Uganda</h3>
-
-        <p>
-          A sneaker experience designed for local customers.
-        </p>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- GALLERY -->
-
-  <section>
-
-    <div class="section-title">
-
-      <h2>Sneaker Gallery</h2>
-
-      <p>Explore the KYAMBS KICKS style.</p>
-
-    </div>
-
-
-    <div class="gallery">
-
-      <img
-        src="https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=900&q=80"
-        alt="Sneakers"
-      >
-
-      <img
-        src="https://images.unsplash.com/photo-1460353581641-37baddab0fa2?auto=format&fit=crop&w=900&q=80"
-        alt="Sneakers"
-      >
-
-      <img
-        src="https://images.unsplash.com/photo-1495555961986-6d4c1ecb7be3?auto=format&fit=crop&w=900&q=80"
-        alt="Sneakers"
-      >
-
-    </div>
-
-  </section>
-
-
-  <!-- CONTACT -->
-
-  <section class="contact" id="contact">
-
-    <div class="section-title">
-
-      <h2>Ready For Your Next Pair?</h2>
-
-      <p>
-        Contact KYAMBS KICKS and find your next favorite sneakers.
-      </p>
-
-      <a
-        class="btn"
-        href="https://wa.me/256700000000"
-      >
-        WhatsApp Us
-      </a>
-
-    </div>
-
-  </section>
-
-
-  <!-- FOOTER -->
+  </main>
 
   <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="brand">KYAMBS <span>KICKS</span></a>
+          <p>Premium sneakers. Fresh styles. Made for your everyday moves in Uganda.</p>
+        </div>
 
-    <p>
-      © 2026 KYAMBS KICKS. All rights reserved.
-    </p>
+        <div class="footer-column">
+          <h3>Explore</h3>
+          <a href="#home">Home</a>
+          <a href="#products">Collection</a>
+          <a href="#about">About us</a>
+        </div>
 
-    <p>
-      Uganda
-    </p>
+        <div class="footer-column">
+          <h3>Help</h3>
+          <a href="#contact">Contact us</a>
+          <a href="https://wa.me/256700000000" target="_blank">WhatsApp</a>
+          <a href="#">Delivery information</a>
+        </div>
 
+        <div class="footer-column">
+          <h3>Follow</h3>
+          <a href="#" target="_blank">Instagram</a>
+          <a href="#" target="_blank">TikTok</a>
+          <a href="#" target="_blank">Facebook</a>
+        </div>
+      </div>
+
+      <div class="copyright">
+        © 2026 KYAMBS KICKS. All rights reserved.
+      </div>
+    </div>
   </footer>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <div class="modal" id="productModal" aria-hidden="true">
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="close-modal" id="closeModal" type="button" aria-label="Close product preview">×</button>
+
+      <div class="modal-image">
+        <img id="modalImage" src="" alt="">
+      </div>
+
+      <div class="modal-details">
+        <h2 id="modalTitle"></h2>
+        <p id="modalPrice"></p>
+        <a id="modalOrder" class="primary-button" href="#" target="_blank">Order on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const WHATSAPP_NUMBER = "256700000000";
+
+    const menuButton = document.getElementById("menuButton");
+    const navLinks = document.getElementById("navLinks");
+    const cartCount = document.getElementById("cartCount");
+    const toast = document.getElementById("toast");
+    const modal = document.getElementById("productModal");
+    const closeModal = document.getElementById("closeModal");
+    const modalImage = document.getElementById("modalImage");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalPrice = document.getElementById("modalPrice");
+    const modalOrder = document.getElementById("modalOrder");
+    const newsletterForm = document.getElementById("newsletterForm");
+
+    let cartItems = 0;
+    let toastTimer;
+
+    menuButton.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      menuButton.setAttribute("aria-expanded", String(isOpen));
+      menuButton.textContent = isOpen ? "×" : "☰";
+    });
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuButton.setAttribute("aria-expanded", "false");
+        menuButton.textContent = "☰";
+      });
+    });
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(toastTimer);
+
+      toastTimer = setTimeout(() => {
+        toast.classList.remove("show");
+      }, 2800);
+    }
+
+    document.querySelectorAll(".filter-button").forEach(button => {
+      button.addEventListener("click", () => {
+        document.querySelectorAll(".filter-button").forEach(item => {
+          item.classList.remove("active");
+        });
+
+        button.classList.add("active");
+
+        const filter = button.dataset.filter;
+
+        document.querySelectorAll(".product-card").forEach(card => {
+          const shouldShow = filter === "all" || card.dataset.category === filter;
+          card.classList.toggle("hidden", !shouldShow);
+        });
+      });
+    });
+
+    document.querySelectorAll(".add-button").forEach(button => {
+      button.addEventListener("click", () => {
+        cartItems++;
+        cartCount.textContent = cartItems;
+        showToast(`${button.dataset.name} added to your bag.`);
+      });
+    });
+
+    document.querySelectorAll(".quick-view").forEach(button => {
+      button.addEventListener("click", () => {
+        const product = button.dataset.product;
+        const price = button.dataset.price;
+        const image = button.dataset.image;
+
+        modalTitle.textContent = product;
+        modalPrice.textContent = `${price} • Available to order in Uganda`;
+        modalImage.src = image;
+        modalImage.alt = product;
+
+        modalOrder.href =
+          `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+            `Hello KYAMBS KICKS, I want to order the ${product} for ${price}.`
+          )}`;
+
+        modal.classList.add("open");
+        modal.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+      });
+    });
+
+    function closeProductModal() {
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+
+    closeModal.addEventListener("click", closeProductModal);
+
+    modal.addEventListener("click", event => {
+      if (event.target === modal) {
+        closeProductModal();
+      }
+    });
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") {
+        closeProductModal();
+      }
+    });
+
+    newsletterForm.addEventListener("submit", event => {
+      event.preventDefault();
+      const email = newsletterForm.querySelector("input").value;
+      showToast(`Thanks! ${email} has been added to our list.`);
+      newsletterForm.reset();
+    });
+
+    const revealObserver = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+
+    document.querySelectorAll(".reveal").forEach(element => {
+      revealObserver.observe(element);
+    });
+  </script>
 
 </body>
   </html>
